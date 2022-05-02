@@ -3,7 +3,7 @@
   (e => {
     const t = document.getElementById("timer-hours"),
       n = document.getElementById("timer-minutes"),
-      o = document.getElementById("timer-seconds");
+      c = document.getElementById("timer-seconds");
     setInterval((() => {
       let e = (() => {
         let e = (new Date("3 may 2022").getTime() - (new Date).getTime()) / 1e3;
@@ -14,35 +14,61 @@
           seconds: Math.floor(e % 60)
         }
       })();
-      e.timeRemaining > 0 && (t.textContent = c(e.hours), n.textContent = c(e.minutes), o.textContent = c(e.seconds))
+      e.timeRemaining > 0 && (t.textContent = r(e.hours), n.textContent = r(e.minutes), c.textContent = r(e.seconds))
     }), 1e3);
-    const c = e => e >= 0 && e < 10 ? "0" + e : e
+    const r = e => e >= 0 && e < 10 ? "0" + e : e
   })(), (() => {
     const e = document.querySelector(".menu"),
       t = document.querySelector("menu"),
       n = document.querySelector(".close-btn"),
-      o = document.querySelectorAll("ul>li>a"),
-      c = () => {
+      c = document.querySelectorAll("ul>li>a"),
+      r = () => {
         t.classList.toggle("active-menu")
       };
-    e.addEventListener("click", c), n.addEventListener("click", c), o.forEach((e => e.addEventListener("click", c)))
+    e.addEventListener("click", r), n.addEventListener("click", r), c.forEach((e => e.addEventListener("click", r)))
   })(), (() => {
     const e = document.querySelector(".popup"),
       t = document.querySelector(".popup-content"),
       n = document.querySelectorAll(".popup-btn"),
-      o = e.querySelector(".popup-close");
-    let c, l, r = 0;
-    const i = () => {
-      r++, c = requestAnimationFrame(i), r < 15 ? t.style.top = r + "%" : (cancelAnimationFrame(c), r = 0)
+      c = e.querySelector(".popup-close");
+    let r, l, a = 0;
+    const o = () => {
+      a++, r = requestAnimationFrame(o), a < 15 ? t.style.top = a + "%" : (cancelAnimationFrame(r), a = 0)
     };
-    o.addEventListener("click", (() => {
+    c.addEventListener("click", (() => {
       e.style.display = "none"
     })), n.forEach((t => {
       t.addEventListener("click", (() => {
-        l < 786 || i(), e.style.display = "block"
+        l < 786 || o(), e.style.display = "block"
       }))
     })), window.addEventListener("resize", (() => {
       l = document.documentElement.clientWidth
     }))
-  })(), console.log("fff")
+  })(), (() => {
+    const e = document.querySelector(".calc-square"),
+      t = document.querySelector(".calc-count"),
+      n = document.querySelector(".calc-day"),
+      c = document.querySelectorAll('[type="text"]'),
+      r = document.querySelectorAll('[type="email"]'),
+      l = document.querySelectorAll('[type="tel"]');
+    e.addEventListener("input", (e => {
+      e.target.value = e.target.value.replace(/\D+/, "")
+    })), t.addEventListener("input", (e => {
+      e.target.value = e.target.value.replace(/\D+/, "")
+    })), n.addEventListener("input", (e => {
+      e.target.value = e.target.value.replace(/\D+/, "")
+    })), c.forEach((e => {
+      e.addEventListener("input", (e => {
+        e.target.value = e.target.value.match(/[а-я -]+/gi)
+      }))
+    })), r.forEach((e => {
+      e.addEventListener("input", (e => {
+        e.target.value = e.target.value.match(/[a-z0-9@-_.!~*']+/gi)
+      }))
+    })), l.forEach((e => {
+      e.addEventListener("input", (e => {
+        e.target.value = e.target.value.match(/[0-9-()]+/gi)
+      }))
+    }))
+  })()
 })();
