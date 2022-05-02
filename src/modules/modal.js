@@ -11,8 +11,8 @@ const modal = () => {
    const animateOpen = () => {
       count++;
       idInterval = requestAnimationFrame(animateOpen);
-      if (count < 37) {
-         modalContent.style.left = count + '%';
+      if (count < 15) {
+         modalContent.style.top = count + '%';
       } else {
          cancelAnimationFrame(idInterval);
          count = 0;
@@ -20,11 +20,11 @@ const modal = () => {
    };
 
    const openModal = () => {
-      if (width > 786) {
-         animateOpen();
+      if (width < 786) {
          modal.style.display = 'block';
       } else {
-         modal.style.display = 'flex';
+         animateOpen();
+         modal.style.display = 'block';
       }
 
    };

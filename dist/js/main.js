@@ -33,16 +33,16 @@
       o = e.querySelector(".popup-close");
     let c, l, r = 0;
     const i = () => {
-      r++, c = requestAnimationFrame(i), r < 37 ? t.style.left = r + "%" : (cancelAnimationFrame(c), r = 0)
+      r++, c = requestAnimationFrame(i), r < 15 ? t.style.top = r + "%" : (cancelAnimationFrame(c), r = 0)
     };
     o.addEventListener("click", (() => {
       e.style.display = "none"
     })), n.forEach((t => {
       t.addEventListener("click", (() => {
-        l > 786 ? (i(), e.style.display = "block") : e.style.display = "flex"
+        l < 786 || i(), e.style.display = "block"
       }))
     })), window.addEventListener("resize", (() => {
       l = document.documentElement.clientWidth
     }))
-  })()
+  })(), console.log("fff")
 })();
